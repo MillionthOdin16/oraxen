@@ -67,18 +67,10 @@ public class RecipesManager {
     private static void registerRecipeByType(File configFile, ConfigurationSection recipeSection) {
         try {
             switch (configFile.getName()) {
-                case "shaped.yml":
-                    new ShapedLoader(recipeSection).registerRecipe();
-                    break;
-                case "shapeless.yml":
-                    new ShapelessLoader(recipeSection).registerRecipe();
-                    break;
-                case "furnace.yml":
-                    new FurnaceLoader(recipeSection).registerRecipe();
-                    break;
-                default:
-                    Logs.logError(configFile.getName());
-                    break;
+                case "shaped.yml" -> new ShapedLoader(recipeSection).registerRecipe();
+                case "shapeless.yml" -> new ShapelessLoader(recipeSection).registerRecipe();
+                case "furnace.yml" -> new FurnaceLoader(recipeSection).registerRecipe();
+                default -> Logs.logError(configFile.getName());
             }
         } catch (NullPointerException exception) {
             Message.BAD_RECIPE.log(Template.template("recipe", recipeSection.getName()));
