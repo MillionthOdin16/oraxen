@@ -37,20 +37,14 @@ public class RepairMechanicListener implements Listener {
         String toRepairId = OraxenItems.getIdByItem(toRepair);
         ItemMeta toRepairMeta = toRepair.getItemMeta();
 
-        if (!(toRepairMeta instanceof Damageable))
-            return;
-        Damageable damageable = (Damageable) toRepairMeta;
+        if (!(toRepairMeta instanceof Damageable damageable)) return;
 
         if (durabilityFactory.isNotImplementedIn(toRepairId)) {
-            if (factory.isOraxenDurabilityOnly())
-                return;
+            if (factory.isOraxenDurabilityOnly()) return;
+            int damage = damageable.getDamage();
+            if (damage == 0) return;
 
-            if (damageable.getDamage() == 0)
-                return;
-
-            damageable
-                    .setDamage(
-                            repairMechanic.getFinalDamage(toRepair.getType().getMaxDurability(), damageable.getDamage()));
+            damageable.setDamage(repairMechanic.getFinalDamage(toRepair.getType().getMaxDurability(), damage));
 
         } else {
             DurabilityMechanic durabilityMechanic = (DurabilityMechanic) durabilityFactory.getMechanic(toRepairId);

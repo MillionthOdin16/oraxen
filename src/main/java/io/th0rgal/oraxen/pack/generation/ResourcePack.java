@@ -106,12 +106,9 @@ public class ResourcePack {
                     getAllFiles(folder, output, "assets/minecraft");
 
             if (customArmorsTextures.hasCustomArmors()) {
-                output.add(new VirtualFile("assets/minecraft/textures/models/armor",
-                        "leather_layer_1.png",
-                        customArmorsTextures.getLayerOne()));
-                output.add(new VirtualFile("assets/minecraft/textures/models/armor",
-                        "leather_layer_2.png",
-                        customArmorsTextures.getLayerTwo()));
+                String armorPath = "assets/minecraft/textures/models/armor";
+                output.add(new VirtualFile(armorPath, "leather_layer_1.png", customArmorsTextures.getLayerOne()));
+                output.add(new VirtualFile(armorPath, "leather_layer_2.png", customArmorsTextures.getLayerTwo()));
             }
             Collections.sort(output);
         } catch (IOException e) {

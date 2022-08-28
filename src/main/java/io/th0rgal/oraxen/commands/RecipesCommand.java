@@ -31,7 +31,7 @@ public class RecipesCommand {
         return new CommandAPICommand("show")
                 .withPermission("oraxen.command.recipes.show")
                 .withArguments(new TextArgument("type").replaceSuggestions(ArgumentSuggestions.strings(info ->
-                        (String[]) ArrayUtils.addAll(new String[]{"all"},
+                        ArrayUtils.addAll(new String[]{"all"},
                                 RecipesEventsManager.get().getPermittedRecipesName(info.sender()))))
                 )
                 .executes((sender, args) -> {

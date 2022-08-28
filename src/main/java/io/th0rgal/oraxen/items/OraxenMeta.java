@@ -12,6 +12,7 @@ public class OraxenMeta {
     private List<String> pullingModels;
     private String chargedModel;
     private String fireworkModel;
+    private String fishingRodCastModel;
     private List<String> layers;
     private String parentModel;
     private boolean generate_model;
@@ -34,8 +35,8 @@ public class OraxenMeta {
         this.chargedModel = readModelName(configurationSection, "charged_model");
         this.fireworkModel = readModelName(configurationSection, "firework_model");
         this.pullingModels = configurationSection.isList("pulling_models")
-                ? configurationSection.getStringList("pulling_models")
-                : null;
+                ? configurationSection.getStringList("pulling_models") : null;
+        this.fishingRodCastModel = readModelName(configurationSection, "fishingrod_cast_model");
         this.layers = configurationSection.getStringList("textures");
         // can't be refactored with for each or stream because it'll throw
         // ConcurrentModificationException
@@ -113,6 +114,14 @@ public class OraxenMeta {
 
     public List<String> getPullingModels() {
         return pullingModels;
+    }
+
+    public boolean hasFishingRodCastModel() {
+        return fishingRodCastModel != null;
+    }
+
+    public String getFishingRodCastModelName() {
+        return fishingRodCastModel;
     }
 
     public boolean hasLayers() {

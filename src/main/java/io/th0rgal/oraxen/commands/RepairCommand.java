@@ -28,7 +28,7 @@ public class RepairCommand {
 
                     if (sender instanceof Player player) if ((args[0]).equals("hand")) {
                         ItemStack item = player.getInventory().getItemInMainHand();
-                        if (item == null || item.getType() == Material.AIR) {
+                        if (item.getType() == Material.AIR) {
                             Message.CANNOT_BE_REPAIRED_INVALID.send(sender);
                             return;
                         }
@@ -36,7 +36,7 @@ public class RepairCommand {
                             Message.CANNOT_BE_REPAIRED.send(sender);
 
                     } else if (player.hasPermission("oraxen.command.repair.all")) {
-                        ItemStack[] items = (ItemStack[]) ArrayUtils.addAll(player.getInventory().getStorageContents(),
+                        ItemStack[] items = ArrayUtils.addAll(player.getInventory().getStorageContents(),
                                 player.getInventory().getArmorContents());
                         int failed = 0;
                         for (ItemStack item : items) {
